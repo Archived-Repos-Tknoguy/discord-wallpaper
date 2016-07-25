@@ -1,0 +1,16 @@
+{
+  "name": "discord-wallpaper",
+  "description": "puts the latest image in your computer's wallpaper",
+  "author": "Hayden Andreyka <haydenandreyka@gmail.com>",
+  "version": "1.0.0",
+  "devDependencies": {
+    "jshint": "^2.6.0"
+  },
+  "dependencies": {
+  	"discord.js": "^8.0.0",
+  	"wallpaper": "*"
+  },
+  "scripts": {
+    "test": "node ./node_modules/jshint/bin/jshint index.js"
+  }
+}
