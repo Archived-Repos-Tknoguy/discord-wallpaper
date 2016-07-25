@@ -25,7 +25,14 @@ function startAndStuff() {
 }
 
 BotClient.on('message', (msg) => {
-	// things
+	if (Config.ListenChannels.indexOf(msg.channel.id) <= -1)
+		return;
+	
+	if (msg.attachments.length <= 0)
+		return;
+	
+	if (msg.author.equals(BotClient.user)
+		return;
 });
 
 BotClient.on('ready', () => {
