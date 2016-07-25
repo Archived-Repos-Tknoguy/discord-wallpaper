@@ -1,3 +1,4 @@
 {
-	"Token": "Put-your-discord-token-here-dumbass"
+	"Token": "Put-your-discord-token-here-dumbass",
+	"ListenChannels": ["all", "put all in any of the channels to get from all channels, otherwise put channel ids here"]
 }
