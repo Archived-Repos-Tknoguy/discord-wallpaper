@@ -8,7 +8,8 @@
   },
   "dependencies": {
   	"discord.js": "^8.0.0",
-  	"wallpaper": "*"
+  	"wallpaper": "*",
+  	"os-tmpdir": "*"
   },
   "scripts": {
     "test": "node ./node_modules/jshint/bin/jshint index.js"

@@ -3,9 +3,12 @@
 const discordjs = require('discord.js');
 const wallpaper = require('wallpaper');
 const util = require('util');
+const ostmpdir = require('os-tmpdir');
+const fs = require('fs');
 
 var BotClient = new discordjs.Client();
 var Config;
+const tmpDir = ostmpdir() + '/discord-wallpaper/';
 
 try {
 	require('./cfg/config.json');
@@ -15,6 +18,9 @@ try {
 }
 
 function startAndStuff() {
+	if (!fs.existsSync(tmpDir))
+		fs.mkdirSync(tmpDir);
+	
 	BotClient.loginWithToken(Config.Token, (err, token) => {
 		if (err) {
 			console.error('failed to log in oh no (check yo connection or dns)');
@@ -38,6 +44,10 @@ BotClient.on('message', (msg) => {
 	
 	if (!imageType)
 		return;
+	
+	fs.writeFileSync(tmpDir + util.format('%s.%s', msg.id, imageType), msg.attachments[0]);
+	
+	wallpaper.set(util.format('%s.%s', msg.id, imageType));
 });
 
 BotClient.on('ready', () => {
