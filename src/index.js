@@ -42,7 +42,7 @@ BotClient.on('message', (msg) => {
 		return;*/
 	
 	request.get(msg.attachments[0].url).on('response', (data) => {
-		const allowedmimes = [ "png", "jpeg", "jpg", "bmp" ];
+		const allowedmimes = [ "png", "jpeg", "jpg", "bmp", "gif" ];
 		
 		if (!data.headers['content-type'].startsWith('image/'))
 			return;
