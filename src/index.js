@@ -48,7 +48,7 @@ BotClient.on('message', (msg) => {
 		data.pipe(fs.createWriteStream(tmpDir + util.format('%s.png', msg.id)));
 		
 		data.on('end', () => {
-			wallpaper.set(util.format('%s.png', msg.id));
+			wallpaper.set(util.format('%s%s.png', tmpDir, msg.id));
 			console.log(util.format('wallpaper set to %s by (%s/%s)', msg.attachments[0].url, msg.author.name, msg.author.id));
 		});
 	});
