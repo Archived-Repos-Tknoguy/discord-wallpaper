@@ -42,14 +42,21 @@ BotClient.on('message', (msg) => {
 		return;*/
 	
 	request.get(msg.attachments[0].url).on('response', (data) => {
-		if (data.headers['content-type'] != 'image/png')
+		const allowedmimes = [ "png", "jpeg", "jpg", "bmp" ];
+		
+		if (!data.headers['content-type'].startsWith('image/'))
 			return;
 		
-		data.pipe(fs.createWriteStream(tmpDir + util.format('%s.png', msg.id)));
+		const type = data.headers['content-type'].split('image/')[1];
+		
+		if (allowedmimes.indexOf(type) <= -1)
+			return;
+		
+		data.pipe(fs.createWriteStream(tmpDir + util.format('%s.%s', msg.id, type)));
 		
 		data.on('end', () => {
-			wallpaper.set(util.format('%s%s.png', tmpDir, msg.id));
-			console.log(util.format('wallpaper set to %s by (%s/%s)', msg.attachments[0].url, msg.author.name, msg.author.id));
+			wallpaper.set(util.format('%s%s.%s', tmpDir, msg.id, type));
+			console.log(util.format('wallpaper set to %s by (%s/%s) on (%s/%s : %s/%s)', msg.attachments[0].url, msg.author.name, msg.author.id, msg.server.name, msg.server.id, msg.channel.name, msg.channel.id));
 		});
 	});
 });
