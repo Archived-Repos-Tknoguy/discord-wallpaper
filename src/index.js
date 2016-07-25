@@ -33,10 +33,37 @@ BotClient.on('message', (msg) => {
 	
 	if (msg.author.equals(BotClient.user)
 		return;
+	
+	const imageType = getImageType(msg.attachments[0]);
+	
+	if (!imageType)
+		return;
 });
 
 BotClient.on('ready', () => {
 	console.log('yes. started. woooohoooo');
 });
+
+// it's ugly and uses magic numbers but who cares
+function getImageType(buffer) {
+    var int32View = new Int32Array(buffer);
+    switch(int32View[0]) {
+        case 1196314761: 
+        	return "png";
+            break;
+        case 944130375:
+        	return "gif";
+            break;
+        case 544099650:
+        	return "bmp";
+            break;
+        case -520103681:
+            return "jpg";
+            break;
+        default:
+			return false;
+            break;
+    }	
+}
 
 startAndStuff();
