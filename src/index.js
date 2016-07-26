@@ -7,7 +7,7 @@ const ostmpdir = require('os-tmpdir');
 const fs = require('fs');
 const request = require('request');
 
-var BotClient = new discordjs.Client();
+var BotClient = new discordjs.Client({ autoReconnect: true });
 var Config;
 const tmpDir = ostmpdir() + '/discord-wallpaper/';
 
