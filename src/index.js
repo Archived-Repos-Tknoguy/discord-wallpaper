@@ -65,4 +65,8 @@ BotClient.on('ready', () => {
 	console.log('yes. started. woooohoooo');
 });
 
+BotClient.on('disconnected', () => {
+	console.log('Disconnected. oh no.');
+});
+
 startAndStuff();
