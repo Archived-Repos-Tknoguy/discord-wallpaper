@@ -3,13 +3,13 @@
 const discordjs = require('discord.js');
 const wallpaper = require('wallpaper');
 const util = require('util');
-const ostmpdir = require('os-tmpdir');
 const fs = require('fs');
 const request = require('request');
+const os = require('os');
 
 var BotClient = new discordjs.Client({ autoReconnect: true });
 var Config;
-const tmpDir = ostmpdir() + '/discord-wallpaper/';
+const tmpDir = os.tmpdir() + '/discord-wallpaper/';
 
 try {
 	Config = require('./cfg/config.json');

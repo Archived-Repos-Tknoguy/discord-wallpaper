@@ -9,7 +9,6 @@
   "dependencies": {
   	"discord.js": "^8.0.0",
   	"wallpaper": "*",
-  	"os-tmpdir": "*",
   	"request": "*"
   },
   "scripts": {
