@@ -54,9 +54,11 @@ BotClient.on('message', (msg) => {
 		
 		data.pipe(fs.createWriteStream(tmpDir + util.format('%s.%s', msg.id, type)));
 		
+		var localfile = util.format('%s%s.%s', tmpDir, msg.id, type);
+		
 		data.on('end', () => {
-			wallpaper.set(util.format('%s%s.%s', tmpDir, msg.id, type));
-			console.log(util.format('wallpaper set to %s by (%s/%s) on (%s/%s : %s/%s)', msg.attachments[0].url, msg.author.name, msg.author.id, msg.server.name, msg.server.id, msg.channel.name, msg.channel.id));
+			wallpaper.set(localfile);
+			console.log(util.format('wallpaper set to %s by (%s/%s) on (%s/%s : %s/%s)\nlocal file: %s', msg.attachments[0].url, msg.author.name, msg.author.id, msg.server.name, msg.server.id, msg.channel.name, msg.channel.id, localfile));
 		});
 	});
 });
